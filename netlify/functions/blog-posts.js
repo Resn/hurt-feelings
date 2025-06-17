@@ -1,3 +1,6 @@
+const axios = require('axios');
+const { withCors } = require('./util/cors');
+
 const blogPostsHandler = async (event, context) => {
   const WEBFLOW_SITE_ID = process.env.WEBFLOW_SITE_ID;
   const WEBFLOW_ACCESS_TOKEN = process.env.WEBFLOW_ACCESS_TOKEN;
