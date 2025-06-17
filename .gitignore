@@ -1,0 +1,12 @@
+# Local Netlify folder
+.netlify
+/public/webflow
+dist
+.env
+node_modules
+.DS_Store
+
+# Get the webflow-export folder, but ignore the contents
+/webflow-export/*
+#allow webflow-export/.gitkeep to be tracked
+!/webflow-export/.gitkeep

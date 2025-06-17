@@ -1,0 +1,18 @@
+[build]
+  publish = "dist"    # Your webpack output directory
+  functions = "netlify/functions"
+
+[dev]
+  functions = "netlify/functions"
+  framework = "vite"
+  command = "vite --port 3333 --host"
+  targetPort = 3333
+  port = 8888
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"
