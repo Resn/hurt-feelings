@@ -1,6 +1,11 @@
-const fs = require('fs');
-const path = require('path');
-const rimraf = require('rimraf');
+const fs = require('node:fs');
+const path = require('node:path');
+const { rimraf } = require('rimraf');
+const process = require('node:process');
+const { loadEnv } = require('vite');
+
+const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
+
 
 const ASSET_TYPES = {
   IMAGES: 'images',
@@ -17,19 +22,21 @@ const PATHS = {
 const HTML_REPLACE = [
   {
     pattern: /src="images\//g,
-    replacement: 'src="/webflow/assets/images/'
+    replacer: (match) => 'src="/webflow/assets/images/'
   },
   {
     pattern: /href="css\//g,
-    replacement: 'href="/webflow/assets/css/'
+    replacer: (match) => 'href="/webflow/assets/css/'
   },
   {
     pattern: /src="js\//g,
-    replacement: 'src="/webflow/assets/js/'
+    replacer: (match) => 'src="/webflow/assets/js/'
   },
   {
-    pattern: /<script async="" src="https:\/\/hurt-feelings\.netlify\.app\/bundle\.js"><\/script>/,
-    replacement: '<script type="module" src="/src/main.js"></script>'
+    pattern: new RegExp(`${env.NETLIFY_SITE_URL}/bundle\\.js`),
+    replacer: (match) => {
+      return '/src/main.js'
+    }
   },
   {
     pattern: /href="([^"]+)\.html"/g,
@@ -96,8 +103,10 @@ function replaceSrcSet(srcset) {
 function processHtmlContent(html) {
   let processedHtml = html;
 
+  const scriptTag = html.match(/<script[^>]*?bundle\.js[^>]*?>/);
+
   HTML_REPLACE.forEach(({ pattern, replacement, replacer }) => {
-    processedHtml = processedHtml.replace(pattern, replacer || replacement);
+    processedHtml = processedHtml.replace(pattern, replacer);
   });
 
   return processedHtml.replace(/srcset="([^"]+)"/g, (match, srcset) => replaceSrcSet(srcset));

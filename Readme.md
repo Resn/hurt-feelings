@@ -45,6 +45,7 @@ Button has been provided as an example component, which you can use as a referen
 - The Webflow export is only used during development and won't be included in the production build
 - Make sure to update your Webflow export when changes are made in Webflow
 - The `import-webflow` script processes the export to work with the local development environment
+- The Webflow export does not include any CMS data. This means that pages are exported with the empty state. To apply js to this state, grab the rendered html from the webflow page you need, paste it into the related html file in the `webflow-export` directory, and re-reun pnpm dev. Alternatively, you could set up a component in the style-guide that has nstatic data.
 
 ## Development
 
