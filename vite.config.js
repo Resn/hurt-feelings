@@ -75,6 +75,10 @@ export default defineConfig({
     port: 3333,
     strictPort: true,
     host: true,
+    fs: {
+      strict: false,
+      allow: ['..']
+    }
 
   }
 

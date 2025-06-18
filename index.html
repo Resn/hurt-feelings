@@ -1,15 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <title>Redirecting...</title>
-    <script>
-        window.location.href = '/webflow/index.html';
-    </script>
-    <!-- Fallback meta redirect -->
-    <meta http-equiv="refresh" content="0; url=/webflow/index.html">
+    <meta charset="UTF-8"/>
+    <title>Available Pages</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .page-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .page-list li {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .page-list li:hover {
+            background: #f0f0f0;
+        }
+
+        .page-list a {
+            color: #2563eb;
+            text-decoration: none;
+            display: block;
+        }
+
+        .page-list a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            color: #1f2937;
+        }
+    </style>
 </head>
 <body>
-<p>If you are not redirected automatically, follow this <a href="/webflow/index.html">link</a>.</p>
+<h1>Webflow Pages</h1>
+<ul class="page-list" id="pageList">
+  li>Loading...</li>
+</ul>
+
+<script>
+  async function listWebflowPages() {
+    try {
+      const response = await fetch('/.netlify/functions/dev-list-pages');
+      const pages = await response.json();
+
+      const pageList = document.getElementById('pageList');
+      if (pages.length === 0) {
+        pageList.innerHTML = '<li>No HTML pages found</li>';
+      } else {
+        pageList.innerHTML = pages.map(({path, name}) => `
+          <li>
+            <a href="${path}">
+              ${name}
+            </a>
+          </li>
+        `)
+          .join('');
+      }
+    } catch (error) {
+      console.error('Error loading pages:', error);
+      document.getElementById('pageList').innerHTML =
+        '<li>Error loading pages. Please check the console for details.</li>';
+    }
+  }
+
+  // Load the pages when the document is ready
+  document.addEventListener('DOMContentLoaded', listWebflowPages);
+</script>
 </body>
 </html>

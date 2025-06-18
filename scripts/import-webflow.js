@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const rimraf = require('rimraf');
 
 const ASSET_TYPES = {
   IMAGES: 'images',
@@ -136,19 +137,24 @@ function processHtmlFile(filename) {
   writeWebflowDir(filename, processedHtml);
 }
 
+function clearWebflowDir() {
+  if (fs.existsSync(PATHS.WEBFLOW_DIR)) {
+    rimraf.sync(PATHS.WEBFLOW_DIR);
+  }
+}
+
 function importWebflowExport() {
   try {
-
     const htmlFiles = fs.readdirSync(PATHS.EXPORT_DIR)
         .filter(file => file.endsWith('.html'));
 
     if (htmlFiles.length === 0) {
       console.warn(`No HTML files found in ${PATHS.EXPORT_DIR} directory.`);
       console.error(`Make sure you have exported your Webflow site and placed the files in the ${PATHS.EXPORT_DIR} directory`);
-
       return;
     }
 
+    clearWebflowDir();
     createRequiredDirectories();
     copyAssets();
 
@@ -159,4 +165,5 @@ function importWebflowExport() {
     console.error(`Make sure you have exported your Webflow site and placed the files in the ${PATHS.EXPORT_DIR} directory`);
   }
 }
+
 importWebflowExport();
