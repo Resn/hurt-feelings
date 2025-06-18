@@ -27,7 +27,7 @@ const HTML_REPLACE = [
     replacement: 'src="/webflow/assets/js/'
   },
   {
-    pattern: /<script async="" src="https:\/\/webflow-test-js\.netlify\.app\/bundle\.js"><\/script>/,
+    pattern: /<script async="" src="https:\/\/hurt-feelings\.netlify\.app\/bundle\.js"><\/script>/,
     replacement: '<script type="module" src="/src/main.js"></script>'
   },
   {

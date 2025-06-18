@@ -42,15 +42,21 @@ export default defineConfig({
     manifest: true,
     cssCodeSplit: true,
     assetsDir: 'assets',
+    lib: {
+      entry: path.resolve(__dirname, "src/main.js"),
+      name: "SharedComponents",
+      fileName: (format) => `bundle.js`,
+      formats: ["es"],
+    },
     rollupOptions: {
-      input: {
-        // index: 'index.html',
-        main: "src/main.js",
-        dev: "src/dev.js",
+      output: {
+        inlineDynamicImports: true, // Forces everything into a single file
+        manualChunks: undefined // Prevents code splitting
       },
       external: [
         /public\/webflow\/.*/
       ]
+
     },
   },
 
