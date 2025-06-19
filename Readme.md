@@ -104,18 +104,16 @@ Getting this working in Vue means using non-SFC`.js` components rather than `.vu
 1. No CSS or html templates included in js files
 2. Unclear if we can use `v-text="mytext"` or `{{ mytext }}` style bindings in html. Requires testing (but the parent element would need to be hidden by default and await js load)
 3. Is currently set up using composables, but this level of complexity is not strictly required for this build.
-4. Some Vue Ref limitations. See below.
+4. No vue refs
 
 
-### Using Refs
+### Refs
 
-Past findings, untested with webflow: 
-
-"Vue Refs can be used in templates, but only if it's a child ref of the instantiated component. Root level refs are ignored. As a fallback, we can pass the element through its initiation method instead"
+Refs appear to be ignored. We will have to rely on DOM selectors instead
 
 ```
 <div class="helloworld" data-js-hello-world :data-image-source="imageSource" ref="myElement">
-    <img :src="imageSource" class="helloworld__image" alt="Vue Logo" ref="image">
+    <img :src="imageSource" class="helloworld__image" alt="Vue Logo">
     <button type="button" id="counterButton" @click="incrementCount($event)">
         count is <span v-text="count"></span>
     </button>
