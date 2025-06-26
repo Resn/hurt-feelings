@@ -1,5 +1,5 @@
 import { createApp, ref, onMounted } from 'vue/dist/vue.esm-bundler.js';
-import useButton from "~/shared/Button/useButton.js";
+import useButton from "~/shared/useButton.js";
 
 // the selector in the DOM we want to attach this component to
 const componentSelector = '[data-js-button]';
