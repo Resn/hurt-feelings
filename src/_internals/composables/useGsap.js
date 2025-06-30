@@ -8,7 +8,7 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 
-import env from '@components/_internals/config/env'
+import env from '@/_internals/config/env'
 
 export const useGsap = function () {
   if (!env.isSSR) {
