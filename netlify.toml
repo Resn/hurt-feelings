@@ -3,6 +3,7 @@
   functions = "netlify/functions"
 
 [dev]
+  autoLaunch = false
   functions = "netlify/functions"
   framework = "vite"
   command = "vite --port 3333 --host"
