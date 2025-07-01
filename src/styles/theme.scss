@@ -1,0 +1,12 @@
+@use 'sass:list';
+@use './util/colors' as *;
+
+
+@each $color, $value in $theme-colors {
+  .theme-text--#{$color} {
+    color: $value;
+  }
+  .theme-bg--#{$color} {
+    background-color: $value;
+  }
+}
