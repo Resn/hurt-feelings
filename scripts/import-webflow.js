@@ -41,6 +41,11 @@ const HTML_REPLACE = [
   {
     pattern: /href="([^"]+)\.html"/g,
     replacer: (match, p1) => p1 === 'index' ? 'href="/"' : `href="/${p1}"`
+  },
+  {
+    // match the exact Netlify-hosted CSS URL
+    pattern: /<link\s+rel="stylesheet"\s+href="https:\/\/hurt\-feelings\.netlify\.app\/webflow\-components\.css"\s*\/?>/g,
+    replacer: () => ''
   }
 ];
 

@@ -47,12 +47,20 @@ hr,
     background-image: $hr-4;
 }
 
+[role="listitem"] {
+  @for $i from 1 through list.length($hrs) {
+    // 4n + $i cycles 1 → 4, then repeats
+    &:nth-child(4n + #{$i}) .has-hr:before {
+      background-image: list.nth($hrs, $i);
+    }
+  }
+}
 
+
+// Support lists with lines between (like the accordions)
+// apply has-hr to the element where the line should be rendered
 $hrs: ($hr-1, $hr-2, $hr-3, $hr-4);
-
-// last child afetr
-
-[role="listitem"]:last-child .has-hr {
+[role="listitem"]:last-child .has-hr--last {
   position: relative;
   &:after {
     content: "";
@@ -64,14 +72,5 @@ $hrs: ($hr-1, $hr-2, $hr-3, $hr-4);
     bottom: 0;
     background-repeat: no-repeat;
     grid-area: 1 / 1 / 2 / 13;
-  }
-}
-
-[role="listitem"] {
-  @for $i from 1 through list.length($hrs) {
-    // 4n + $i cycles 1 → 4, then repeats
-    &:nth-child(4n + #{$i}) .has-hr:before {
-      background-image: list.nth($hrs, $i);
-    }
   }
 }
