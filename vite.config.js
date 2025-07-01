@@ -57,7 +57,7 @@ export default async mode => {
     build: {
       outDir: "dist",
       manifest: true,
-      cssCodeSplit: true,
+      cssCodeSplit: false,
       assetsDir: 'assets',
       lib: {
         entry: path.resolve(__dirname, "src/main.js"),

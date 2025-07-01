@@ -73,7 +73,7 @@ export default function useAccordion(el) {
       target.value.removeEventListener('transitionend', onTransitionEnd)
     }
   }
-  
+
   onBeforeUnmount(detachEvents)
 
   return {
