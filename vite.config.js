@@ -2,6 +2,7 @@ import path from "node:path";
 import { defineConfig, loadEnv } from 'vite'
 import vue from "@vitejs/plugin-vue";
 import svgLoader from "vite-svg-loader";
+import postcss from '@vituum/vite-plugin-postcss'
 import process from 'node:process'
 
 import viteCompression from "vite-plugin-compression";
@@ -53,6 +54,7 @@ export default async mode => {
 
     plugins: [
       vue(),
+      postcss(),
     ],
     build: {
       outDir: "dist",
@@ -78,6 +80,7 @@ export default async mode => {
     },
 
     css: {
+      postcss: process.cwd(),
       preprocessorOptions: {
         scss: {
           additionalData: ` 
