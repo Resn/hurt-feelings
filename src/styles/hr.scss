@@ -47,6 +47,8 @@ hr,
     background-image: $hr-4;
 }
 
+
+$hrs: ($hr-1, $hr-2, $hr-3, $hr-4);
 [role="listitem"] {
   @for $i from 1 through list.length($hrs) {
     // 4n + $i cycles 1 → 4, then repeats
@@ -59,7 +61,6 @@ hr,
 
 // Support lists with lines between (like the accordions)
 // apply has-hr to the element where the line should be rendered
-$hrs: ($hr-1, $hr-2, $hr-3, $hr-4);
 [role="listitem"]:last-child .has-hr--last {
   position: relative;
   &:after {
