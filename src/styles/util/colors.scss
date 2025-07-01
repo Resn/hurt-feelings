@@ -1,0 +1,21 @@
+@use 'sass:map';
+$theme-colors: (
+  "blue-tear": #5cbce5,
+  "blue-light": #0e53c9,
+  "blue": #083176,
+  "blue-dark": #051d48,
+  "yellow": #fff127,
+  "red": #b52822,
+  "pink": #ff9ed1,
+  "black-rich": #020e21,
+  "white-off": #fcfbf5,
+  "white": #ffffff,
+  "grey-800": #353e4e,
+  "grey-500": #818690,
+  "grey-300": #b3b7bd,
+  "grey-100": #e6e7e9
+);
+
+@function getColor($key) {
+  @return map.get($theme-colors, $key);
+}
