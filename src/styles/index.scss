@@ -2,6 +2,7 @@
 // include all styles from the global styles folder
 @use './hr' as *;
 @use './theme' as *;
+@use './content' as *;
 
 .webflow-placeholder {
   display: none;
