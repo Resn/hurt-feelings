@@ -1,12 +1,19 @@
 
 .content.w-richtext {
- .w-richtext-align-fullwidth {
+  .w-richtext-align-fullwidth {
     img {
       margin-left: -3rem;
       margin-right: -3rem;
       width: calc(100% + 6rem);
       max-width: calc(100% + 6rem);
-      max-width: calc(100% + 6rem);
+
+      @media screen and (max-width: 991px) {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
     }
+  }
 }
-}
+
+
