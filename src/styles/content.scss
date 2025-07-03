@@ -1,5 +1,9 @@
 
 .content.w-richtext {
+
+  h1:first-child {
+    margin-top: 0;
+  }
   .w-richtext-align-fullwidth {
     img {
       margin-left: -3rem;
