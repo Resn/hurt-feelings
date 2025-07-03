@@ -56,7 +56,7 @@ hr,
 }
 
 [role="listitem"] {
-  @for $i from 1 through list.length($hrs) {
+  @for $i from 1 through 4 {
     &:nth-child(4n + #{$i}) .has-hr:before {
       background-image: svg-load(list.nth($hrs, $i), fill=getColor("blue-tear"));
     }
