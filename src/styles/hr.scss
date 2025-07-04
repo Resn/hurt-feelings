@@ -6,8 +6,13 @@ $hr-2: '../assets/svg-line2.svg';
 $hr-3: '../assets/svg-line3.svg';
 $hr-4: '../assets/svg-line4.svg';
 $hr-5: '../assets/svg-line5.svg';
+$hr-6: '../assets/svg-line6.svg';
+$hr-7: '../assets/svg-line7.svg';
 
-$hrs: ($hr-1, $hr-2, $hr-3, $hr-4, $hr-5);
+$hr-halfl-1: '../assets/svg-halfline.svg';
+
+$hrs: ($hr-1, $hr-2, $hr-3, $hr-4, $hr-5, $hr-6, $hr-7);
+$hrs-half: ($hr-half-1);
 
 %hr-common {
   position: relative;
@@ -55,6 +60,24 @@ hr,
   }
 }
 
+@for $i from 1 through list.length($hrs) {
+  .hr-half-#{$i} {
+    @extend %hr-common;
+    &:before {
+      background-image: svg-load(list.nth($hrs, $i), fill=getColor("blue-tear"));
+    }
+
+    @each $color, $value in $theme-colors {
+      &--#{$color} {
+        &:before {
+          background-image: svg-load(list.nth($hrs, $i), fill=$value);
+        }
+      }
+    }
+  }
+}
+
+// only loop first 4 for lists
 [role="listitem"] {
   @for $i from 1 through 4 {
     &:nth-child(4n + #{$i}) .has-hr:before {
