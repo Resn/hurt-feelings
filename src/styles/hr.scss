@@ -17,6 +17,10 @@ $hrs-half: ($hr-half-1);
 %hr-common {
   position: relative;
 
+  &.no-padding {
+    padding: 0;
+  }
+
   &::before {
     content: "";
     display: block;
