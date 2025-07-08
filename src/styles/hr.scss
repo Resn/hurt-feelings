@@ -60,6 +60,13 @@ hr,
           background-image: svg-load(list.nth($hrs, $i), fill=$value);
         }
       }
+
+      // this could be clearer, but it was setup expecting webflow to use classes for variants
+      &[data-wf--hr-#{$i}--variant="hr-#{$i}--#{$color}"] {
+        &:before {
+          background-image: svg-load(list.nth($hrs, $i), fill=$value);
+        }
+      }
     }
   }
 }
