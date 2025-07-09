@@ -32,8 +32,6 @@
       }
     }
   }
-
-
 }
 
 .text-ellipsis {
@@ -48,4 +46,10 @@
       -webkit-line-clamp: $i;
     }
   }
+}
+
+// webflow adds extra gap to rows???
+.w-row-fix:after,
+.w-row-fix:before {
+  display: none;
 }
