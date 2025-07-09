@@ -1,8 +1,10 @@
 @use './util/colors' as *;
+
 // include all styles from the global styles folder
 @use './hr' as *;
 @use './theme' as *;
 @use './content' as *;
+@use './general' as *;
 
 .webflow-placeholder {
   display: none;

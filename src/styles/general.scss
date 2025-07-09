@@ -1,0 +1,22 @@
+// Link cover done here so it doesn't interfere with the edit view behaviour
+// webflow doesn't allow a collection list to be inside a link
+// so there are situations where we need to use absolute positioning instead
+.link-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  
+  @for $i from 1 through 5 {
+    &--#{$i} {
+      -webkit-line-clamp: $i;
+    }
+  }
+}
