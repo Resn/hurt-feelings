@@ -10,7 +10,8 @@ const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
 const ASSET_TYPES = {
   IMAGES: 'images',
   CSS: 'css',
-  JS: 'js'
+  JS: 'js',
+  FONTS: 'fonts'
 };
 
 const PATHS = {
@@ -117,6 +118,22 @@ function processHtmlContent(html) {
   return processedHtml.replace(/srcset="([^"]+)"/g, (match, srcset) => replaceSrcSet(srcset));
 }
 
+function processCssContent(css) {
+  // Replace relative font paths with absolute paths
+  return css.replace(/url\(['"]?\.\.\/fonts\//g, 'url(\'/webflow/assets/fonts/');
+}
+
+function processCssFile(filename) {
+  const cssPath = path.join(PATHS.WEBFLOW_DIR, PATHS.ASSETS, 'css', filename);
+  if (fs.existsSync(cssPath)) {
+    const css = fs.readFileSync(cssPath, 'utf8');
+    const processedCss = processCssContent(css);
+    fs.writeFileSync(cssPath, processedCss);
+    console.log(`Processed CSS: ${filename}`);
+  }
+}
+
+
 /**
  * Saves the processed HTML content to the Webflow directory.
  * @param filename
@@ -171,6 +188,13 @@ function importWebflowExport() {
     clearWebflowDir();
     createRequiredDirectories();
     copyAssets();
+
+    if (fs.existsSync(path.join(PATHS.WEBFLOW_DIR, PATHS.ASSETS, 'css'))) {
+      const cssFiles = fs.readdirSync(path.join(PATHS.WEBFLOW_DIR, PATHS.ASSETS, 'css'))
+        .filter(file => file.endsWith('.css'));
+      cssFiles.forEach(processCssFile);
+    }
+
 
     htmlFiles.forEach(processHtmlFile);
     console.log('Successfully processed all Webflow export files!');
