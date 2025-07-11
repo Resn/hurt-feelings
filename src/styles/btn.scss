@@ -99,6 +99,7 @@ $btn-variant-hover: (
 
   // apply the background images to the button based on the variant
   @each $name, $value in $btn-variant {
+    &.btn--#{$name},
     &[data-wf--btn-small--variant="#{$name}"],
     &[data-wf--btn--variant="#{$name}"] {
       &::before {
@@ -115,6 +116,7 @@ $btn-variant-hover: (
 
   @each $name, $value in $btn-variant-hover {
     @media (hover: hover) {
+      &.btn--#{$name},
       &[data-wf--btn-small--variant="#{$name}"],
       &[data-wf--btn--variant="#{$name}"] {
         &:hover,
