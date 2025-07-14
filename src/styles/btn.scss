@@ -101,7 +101,8 @@ $btn-variant-hover: (
     @media  (max-width: 991px) {
       align-items: flex-start;
       justify-content: space-between;
-      //margin: 0;
+      margin-left: -2px;
+      margin-right: -10px;
     }
   }
 
