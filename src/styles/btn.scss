@@ -99,9 +99,9 @@ $btn-variant-hover: (
 
     // respond large mobile down
     @media  (max-width: 991px) {
-      color: #f00;
       align-items: flex-start;
       justify-content: space-between;
+      //margin: 0;
     }
   }
 
