@@ -96,6 +96,13 @@ $btn-variant-hover: (
     white-space: nowrap;
     margin-left: -5px;
     margin-right: -5px;
+
+    // respond large mobile down
+    @media  (max-width: 991px) {
+      color: #f00;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
   }
 
 
