@@ -1,8 +1,8 @@
-import Button from './Button.js'
+import MenuTrigger from './MenuTrigger.js'
 import Accordion from './Accordion.js'
 
 export function loadComponents() {
-  Button()
+  MenuTrigger()
   Accordion()
   // other components here
 }

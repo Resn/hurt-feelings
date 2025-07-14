@@ -130,6 +130,7 @@ $btn-variant-hover: (
       &.btn--#{$name},
       &[data-wf--btn-small--variant="#{$name}"],
       &[data-wf--btn--variant="#{$name}"] {
+        &.js-hover,
         &:hover,
         &:focus {
           background-color: transparent;
