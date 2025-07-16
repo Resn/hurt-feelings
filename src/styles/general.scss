@@ -48,6 +48,12 @@
   }
 }
 
+.text-hyphens {
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
 // webflow adds extra gap to rows???
 .webflow-row-fix:after,
 .webflow-row-fix:before {
